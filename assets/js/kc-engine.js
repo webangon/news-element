@@ -73,6 +73,7 @@
 
 			var requestData = {
 				action: 'khobish_filter_tax',
+				nonce: newselement.nonce,
 				khobish_fn_cat: currentCategory,
 				khobish_fn_page: page,
 				xlxtra_data:xlopt
@@ -80,7 +81,7 @@
 			
 			$.ajax({
 				type: 'POST',
-				url: xl_ajax_object.xl_ajax_url,
+				url: newselement.ajaxurl,
 				cache: true,
 				data: requestData,
 				success: function(data, textStatus, XMLHttpRequest) {
@@ -1007,7 +1008,7 @@
 	            'xlurl':xlurl,
 	        }; 
 	        $.ajax({
-	            url: xl_ajax_object.xl_ajax_url, // AJAX handler
+	            url: newselement.ajaxurl, // AJAX handler
 	            data: data,
 	            type: 'POST',
 	            success: function(data) {              
@@ -1036,7 +1037,7 @@
             'xlurl':khb_url,
         }; 
         $.ajax({
-            url: xl_ajax_object.xl_ajax_url, // AJAX handler
+            url: newselement.ajaxurl, // AJAX handler
             data: data,
             type: 'POST',
 			beforeSend : function ( xhr ) {

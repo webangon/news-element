@@ -1,32 +1,6 @@
 <?php
 use News_Element\Khobish_Helper;
 
-add_action('wp_ajax_cloadmore', 'misha_comments_loadmore_handler'); // wp_ajax_{action}
-add_action('wp_ajax_nopriv_cloadmore', 'misha_comments_loadmore_handler'); // wp_ajax_nopriv_{action}
-
-function misha_comments_loadmore_handler(){
-
-    global $post;
-    $post = get_post( $_POST['post_id'] );
-    setup_postdata( $post );
-
-    // actually we must copy the params from wp_list_comments() used in our theme
-    wp_list_comments( array(
-        'avatar_size' => 100,
-        'page' => $_POST['cpage'],
-        'per_page' => get_option('comments_per_page'),
-        'style' => 'ol',
-        'short_ping' => true,
-        'reply_text' => 'Reply',
-    ) );
-    die;
-}
-
-
-
-
-// Parent Function that makes the magic happen
-
 function prefix_insert_after_paragraph( $insertion, $paragraph_id, $content ) {
     $closing_p = '</p>';
     $paragraphs = explode( $closing_p, $content );
@@ -262,7 +236,6 @@ function khb_floating_social($id,$display){
 
         </div>
         ';
-
         return $html;
 
     }

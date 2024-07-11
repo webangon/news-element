@@ -9,7 +9,7 @@ $args = array(
     'container_class' => 'xlmega-menu-container',
     'menu_class'      => 'htmega-megamenu',
     'items_wrap'      => $items_wrap,
-    'walker'          => new \News_Element_Nav_Walker(),
+    //'walker'          => new \News_Element_Nav_Walker(),
 );
 
 $settings['dtmpl'] = 'menu_search'; 
@@ -24,7 +24,7 @@ $abscls = '';
     foreach ($widgets as $key => $value){
         if (!empty($value['lbl'])) {
         	if ($value['sticky']){ echo '<div class="xlmega-sticky-wrapper">';}
-            require_once ''.$value['lbl'].'.php';
+            require_once ''.esc_attr($value['lbl']).'.php';
             if ($value['sticky']){ echo '</div>';}
         }
         

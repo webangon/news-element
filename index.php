@@ -87,14 +87,14 @@ if ( ! class_exists( 'News_Element_Core' ) )
 			require_once( __DIR__ . '/includes/helper.php' );
 			require_once( __DIR__ . '/includes/ajax_posts.php' );
 			require_once( __DIR__ . '/includes/header-footer/index.php' );
-			require_once( __DIR__ . '/admin/codestar-framework/codestar-framework.php' );
+			//require_once( __DIR__ . '/admin/codestar-framework/codestar-framework.php' );
 			require_once( __DIR__ . '/includes/dynamic-styles.php' );
-			require_once( __DIR__ . '/admin/config/option-panel.php' );
-			require_once( __DIR__ . '/admin/config/taxonomy-meta.php' );
-			require_once( __DIR__ . '/admin/config/menu-meta.php' );
+			//require_once( __DIR__ . '/admin/config/option-panel.php' );
+			//require_once( __DIR__ . '/admin/config/taxonomy-meta.php' );
+			//require_once( __DIR__ . '/admin/config/menu-meta.php' );
 			require_once( __DIR__ . '/admin/lib/index.php' );
-			require_once( __DIR__ . '/includes/xlmega_walker.php' );
-			require_once( __DIR__ . '/admin/config/helper.php' );
+			//require_once( __DIR__ . '/includes/xlmega_walker.php' );
+			//require_once( __DIR__ . '/admin/config/helper.php' );
 			require_once( __DIR__ . '/admin/inc/dash.php' );
 			require_once( __DIR__ . '/includes/ext/sticky.php' );
 

@@ -3,6 +3,9 @@ use News_Element\Khobish_Helper;
 
 function khobish_filter_tax($ajax_parameters = ''){
 	
+	if ( ! wp_verify_nonce( sanitize_text_field(wp_unslash($_POST['nonce'])), 'ajax-nonce' ) ) {
+		wp_die();
+	}	
 	$current_tax = '';
 	$isAjaxCall = false;
 	
@@ -18,10 +21,10 @@ function khobish_filter_tax($ajax_parameters = ''){
         );
 	
 		if (!empty($_POST['khobish_fn_page'])) {
-			$ajax_parameters['khobish_fn_page'] = $_POST['khobish_fn_page'];
+			$ajax_parameters['khobish_fn_page'] = esc_attr($_POST['khobish_fn_page']);
 		}
 		if (!empty($_POST['khobish_fn_cat'])) {
-            $ajax_parameters['khobish_fn_cat'] = $_POST['khobish_fn_cat'];
+            $ajax_parameters['khobish_fn_cat'] = esc_attr($_POST['khobish_fn_cat']);
 			$current_tax = $ajax_parameters['khobish_fn_cat'];
         }else{
 			$current_tax = '';
@@ -37,28 +40,28 @@ function khobish_filter_tax($ajax_parameters = ''){
 		
 		if(is_array($_POST['xlxtra_data'])){ 
  
-			$per_page = $_POST['xlxtra_data']['per_page'];
-			$template = $_POST['xlxtra_data']['template'];
-			$metaf = $_POST['xlxtra_data']['metaf'];
-			$metar = $_POST['xlxtra_data']['metar'];
-			$metas = $_POST['xlxtra_data']['metas'];
-			$imgf = $_POST['xlxtra_data']['imgf'];
-			$imgr = $_POST['xlxtra_data']['imgr'];
-			$imgs = $_POST['xlxtra_data']['imgs'];
-			$excerptf = $_POST['xlxtra_data']['excerptf'];
-			$excerptr = $_POST['xlxtra_data']['excerptr'];
-			$excerpts = $_POST['xlxtra_data']['excerpts'];
-			$col_num = $_POST['xlxtra_data']['column'];
-			$post_format = $_POST['xlxtra_data']['post_format'];
-			$break = $_POST['xlxtra_data']['break'];
+			$per_page = esc_attr($_POST['xlxtra_data']['per_page']);
+			$template = esc_attr($_POST['xlxtra_data']['template']);
+			$metaf = esc_attr($_POST['xlxtra_data']['metaf']);
+			$metar = esc_attr($_POST['xlxtra_data']['metar']);
+			$metas = esc_attr($_POST['xlxtra_data']['metas']);
+			$imgf = esc_attr($_POST['xlxtra_data']['imgf']);
+			$imgr = esc_attr($_POST['xlxtra_data']['imgr']);
+			$imgs = esc_attr($_POST['xlxtra_data']['imgs']);
+			$excerptf = esc_attr($_POST['xlxtra_data']['excerptf']);
+			$excerptr = esc_attr($_POST['xlxtra_data']['excerptr']);
+			$excerpts = esc_attr($_POST['xlxtra_data']['excerpts']);
+			$col_num = esc_attr($_POST['xlxtra_data']['column']);
+			$post_format = esc_attr($_POST['xlxtra_data']['post_format']);
+			$break = esc_attr($_POST['xlxtra_data']['break']);
 
-	        $order = $_POST['xlxtra_data']['order'];
-	        $order_by = $_POST['xlxtra_data']['orderby'];
+	        $order = esc_attr($_POST['xlxtra_data']['order']);
+	        $order_by = esc_attr($_POST['xlxtra_data']['orderby']);
 	        $offset =  (int)( $paged - 1 ) * $per_page  + (int)$_POST['xlxtra_data']['offset'];
 
 			//use for related posts
-			$usage = isset($_POST['xlxtra_data']['usage']) ? $_POST['xlxtra_data']['usage'] : '';
-			$pid = isset($_POST['xlxtra_data']['pid']) ? $_POST['xlxtra_data']['pid'] : '';
+			$usage = isset($_POST['xlxtra_data']['usage']) ? esc_attr($_POST['xlxtra_data']['usage']) : '';
+			$pid = isset($_POST['xlxtra_data']['pid']) ? esc_attr($_POST['xlxtra_data']['pid']) : '';
 		}		
 		
 		$cat = explode(',' , $current_tax);
@@ -101,16 +104,6 @@ function khobish_filter_tax($ajax_parameters = ''){
 	            );  
 			}
 
-
-		} elseif ($usage == 'trending'){
-
-		      $posts = wp_most_popular_get_popular( array(
-
-		       'limit' => $per_page, 
-		       'post_type' => 'post',
-		       'range' => $cat[0], 
-
-		      ) );
 
 		} else {
 

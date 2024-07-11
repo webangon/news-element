@@ -85,18 +85,14 @@ class News_Element_Plugin
         wp_enqueue_script('xlmag-mainlib', NEWS_ELM_URL.'assets/js/main-lib.js', array('jquery'), '', true);
         wp_enqueue_script('xlmag-slick', NEWS_ELM_URL.'assets/js/slick.js', array('jquery'), '', true);
         wp_enqueue_script('velocity', NEWS_ELM_URL.'assets/js/velocity.js', array('jquery'), '', true);
-		wp_localize_script( 'khobish_inito', 'xl_ajax_object', array( 'xl_ajax_url' => admin_url( 'admin-ajax.php' )) );
         wp_enqueue_script( 'khobish-main', NEWS_ELM_URL.'assets/js/kc-engine.js', array( 'jquery','masonry' ), true, 1, 'all' );
 
         // Localize the script with new data
         $script_array = array(
             'ajaxurl' => admin_url('admin-ajax.php'),
-            'security' => wp_create_nonce("subscribe_user"),
+            'nonce' => wp_create_nonce('ajax-nonce'),
         );
-        $url = array( 'admin_ajax' => admin_url( 'admin-ajax.php' ) );
-
-        wp_localize_script( 'khobish-main', 'aw', $script_array );
-        wp_localize_script( 'khobish-main', 'search_url', $url );
+        wp_localize_script( 'khobish-main', 'newselement', $script_array );
 
     }
 
@@ -123,13 +119,11 @@ class News_Element_Plugin
     // Register New Widgets
     public function register_widgets($widgets_manager){
          
-        $options = get_option( '_thepack' );
         $widgets = [];
         foreach ( glob( NEWS_ELM_PATH . '/widgets/block/*' ) as $file ) {
             $widgets[] = substr( $file, strrpos( $file, '/' ) + 1 );
         }
-
-        //$active_widgets = $this->thepack_active_element( $widgets );
+        
         $active_widgets = $widgets;
         if ( is_array( $active_widgets ) ) {
             foreach ( $active_widgets as $key => $value ) {
