@@ -41,7 +41,7 @@ function khobish_filter_tax($ajax_parameters = ''){
 		if(is_array($_POST['xlxtra_data'])){ 
  
 			$per_page = esc_attr($_POST['xlxtra_data']['per_page']);
-			$template = esc_attr($_POST['xlxtra_data']['template']);
+			$template = sanitize_key($_POST['xlxtra_data']['template']);
 			$metaf = esc_attr($_POST['xlxtra_data']['metaf']);
 			$metar = esc_attr($_POST['xlxtra_data']['metar']);
 			$metas = esc_attr($_POST['xlxtra_data']['metas']);

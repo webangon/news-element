@@ -3,7 +3,7 @@
  * Plugin Name: News Element
  * Plugin URI:  http://webangon.com
  * Description: Elementor blog & magazine addon.
- * Version:     1.0.4
+ * Version:     1.0.5
  * Author:      Ashraf
  * Author URI:  http://webangon.com
  * Text Domain: news-element
